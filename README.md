@@ -52,6 +52,23 @@ wispr-flow-iphone-export \
   --dry-run
 ```
 
+## How the extraction works
+
+```mermaid
+flowchart LR
+    backup["Phosphor backup<br/>Manifest.db and sharded files"] --> manifest["Manifest lookup"]
+    app["Optional app-container folder<br/>database.sqlite and audio files"] -. "optional source" .-> db["ZTRANSCRIPTION<br/>final transcript text"]
+    manifest --> db
+    manifest --> segb["ActionTranscript<br/>SEGB v2 records"]
+    db --> markdown["Readable output<br/>iphone/transcripts.md"]
+    db --> ndjson["Structured output<br/>raw/iphone/transcriptions.ndjson"]
+    segb --> raw["Raw containers, payloads,<br/>and manifest"]
+```
+
+The database branch produces readable transcript text. The SEGB branch keeps
+the original ActionTranscript records and their provenance, even when their
+payloads do not contain recoverable text.
+
 ## Getting the source files with Phosphor
 
 The exact Phosphor labels can change between releases, but the workflow is:
