@@ -80,6 +80,12 @@ The exact Phosphor labels can change between releases, but the workflow is:
 4. If the app container is exported separately, choose the folder named
    `com.wispr.flowapp` as `--app-container`.
 
+For the app-container export, open **Applications → In Backup**, search for
+`wispr`, and choose **Extract Data** beside **Flowapp** (`com.wispr.flowapp`).
+The device details in this example are redacted.
+
+![Phosphor search results for Wispr Flow with device details redacted](assets/phosphor-app-search-redacted.png)
+
 The backup root has this shape:
 
 ```text
